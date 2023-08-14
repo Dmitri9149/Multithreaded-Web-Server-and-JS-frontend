@@ -7,12 +7,24 @@
   <body style="color:green;">
     <h1 >Hello!</h1>
     <p>Hi from Root!</p>
-    <p>You may go to News from here</p>
-    <p><button id="redirect" class="float-left submit-button" >News</button></p>
-    <script type="text/javascript">
-        document.getElementById("redirect").onclick = function () {
-            location.href = "/news";
-        };
-    </script>
+    <div>
+      <p style="color:blue;">You may redirect to News from here</p>
+      <p><button id="to_news" class="float-left submit-button" >News</button></p>
+      <script type="text/javascript">
+          document.getElementById("to_news").onclick = function () {
+              location.href = "/news";
+          };
+      </script>
+    </div>
+    <div>
+      <p style="color:rgb(174, 0, 255);">You may redirect to Resources from here</p>
+      <p><button id="to_resources" class="float-left submit-button" >Resources</button></p>
+      <script type="text/javascript">
+          document.getElementById("to_resources").onclick = function () {
+              location.href = "/resources";
+          };
+      </script>
+    </div>
   </body>
+
 </html>
