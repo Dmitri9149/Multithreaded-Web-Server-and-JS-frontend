@@ -49,5 +49,6 @@ fn handle_connection(mut stream: TcpStream) {
     println!("Stream {:?}", &stream);
     println!("Lines {} and {}", &status_line, &filename);
     println!("Response {}", response);
+    
     stream.write_all(response.as_bytes()).unwrap();
 }
