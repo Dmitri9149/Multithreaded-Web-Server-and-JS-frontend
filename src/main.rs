@@ -4,6 +4,7 @@ use std::{
     net::{TcpListener, TcpStream},
 };
 
+const HTTP: &str = "HTTP/1.1 200 OK";
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
@@ -14,22 +15,31 @@ fn main() {
     }
 }
 
+
+fn get_path(path:&str) -> String {
+    return format!("GET {path} HTTP/1.1");
+}
+
+fn file_path(folder:&str, file:&str) -> String {
+    return format!("{folder}{file}"); 
+}
+
 fn handle_connection(mut stream: TcpStream) {
     let buf_reader = BufReader::new(&mut stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 
     let (status_line, filename) = 
-    if request_line == "GET / HTTP/1.1" {
-        ("HTTP/1.1 200 OK", "paths/hello.html")
-    } else if request_line == "GET /news HTTP/1.1" {
-        ("HTTP/1.1 200 OK", "paths/news.html")
-    } else if request_line == "GET /resources HTTP/1.1" {
-        ("HTTP/1.1 200 OK", "paths/resources.html")
+    if request_line == get_path("/") { //"GET / HTTP/1.1" {
+        (HTTP, file_path("paths/", "hello.html"))
+    } else if request_line == get_path("/news") {
+        (HTTP, file_path("paths/", "news.html"))
+    } else if request_line == get_path("/resources") {
+        (HTTP, file_path("paths/", "resources.html"))
     } else {
-        ("HTTP/1.1 404 NOT FOUND", "paths/404.html")
+        ("HTTP/1.1 404 NOT FOUND", file_path("paths/", "404.html"))
     };
 
-    let contents = fs::read_to_string(filename).unwrap();
+    let contents = fs::read_to_string(&filename).unwrap();
     let length = contents.len();
 
     let response =
