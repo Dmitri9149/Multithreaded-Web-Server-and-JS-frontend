@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <title>Hello!</title>
   </head>
-  <body>
-    <h1>Hello!</h1>
+  <body style="color:green;">
+    <h1 >Hello!</h1>
     <p>Hi from Root!</p>
+    <p>You may go to News from here</p>
+    <p><button id="redirect" class="float-left submit-button" >News</button></p>
+    <script type="text/javascript">
+        document.getElementById("redirect").onclick = function () {
+            location.href = "/news";
+        };
+    </script>
   </body>
 </html>

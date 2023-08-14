@@ -53,5 +53,9 @@ fn handle_connection(mut stream: TcpStream) {
     let response =
         format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
 
+    println!("Request_line {:?}", &request_line);
+    println!("Stream {:?}", &stream);
+    println!("Lines {} and {}", &status_line, &filename);
+    println!("Response {}", response);
     stream.write_all(response.as_bytes()).unwrap();
 }
