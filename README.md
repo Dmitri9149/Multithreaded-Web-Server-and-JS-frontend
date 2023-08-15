@@ -8,3 +8,5 @@ Run it with
 cargo run 
 ```   
 from the root of the project. 
+
+The work is in progress, at the moment only the one thread Rust server is implemented. 
